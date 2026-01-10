@@ -218,18 +218,37 @@
                 </div>
                 
                 <!-- FORMULARIO MINIMALISTA -->
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="Tu email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="4" placeholder="Tu mensaje" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Enviar mensaje</button>
-                </form>
+              
+    <form class="contact-form" id="contactForm">
+    <!-- Campo anti-spam (oculto) -->
+    <div style="display: none;">
+        <input type="text" name="_gotcha" id="_gotcha">
+    </div>
+    
+    <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+    </div>
+    <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Tu email" required>
+    </div>
+    <div class="form-group">
+        <textarea id="message" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
+    </div>
+    
+    <!-- Estado del envío -->
+    <div id="formStatus" class="form-status" style="display: none;"></div>
+    
+    <button type="submit" class="btn-primary" id="submitBtn">
+        <span id="btnText">Enviar mensaje</span>
+        <span id="btnLoader" style="display: none;">Enviando...</span>
+    </button>
+    
+    <!-- Nota alternativa -->
+    <p class="form-note">
+        Si tienes problemas con el formulario, escríbeme directamente a: 
+        <a href="mailto:diegosmk16@gmail.com">diegosmk16@gmail.com</a>
+    </p>
+</form>
             </div>
         </div>
     </section>
@@ -247,6 +266,7 @@
 
 
 </html>
+
 
 
 
