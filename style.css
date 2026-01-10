@@ -1,0 +1,522 @@
+/* ========== RESET Y CONFIGURACIÓN GLOBAL ========== */
+/* Reset: Elimina márgenes y padding por defecto del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* box-sizing: border-box hace que padding y border se incluyan en el width */
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Desplazamiento suave al hacer clic en enlaces internos */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Fuente principal: Inter (moderna y legible) */
+    color: #333333;
+    /* Color de texto principal - gris oscuro formal */
+    line-height: 1.6;
+    /* Espaciado entre líneas para mejor lectura */
+    background-color: #ffffff;
+    /* Fondo blanco puro - minimalista */
+}
+
+.container {
+    max-width: 1200px;
+    /* Ancho máximo del contenido */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    padding: 0 20px;
+    /* Padding lateral en móviles */
+}
+
+/* ========== TIPOGRAFÍA FORMAL ========== */
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    /* Fuente serif elegante para títulos */
+    font-weight: 500;
+    /* Peso medio (no muy grueso) */
+    color: #1a1a1a;
+    /* Negro suave, no puro */
+}
+
+
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    color: #555555;
+    /* Gris medio para texto de párrafo */
+    font-size: 1.1rem;
+}
+
+/* ========== FOTO ELEGANTE CON MARCO ========== */
+.profile-elegant {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.photo-frame {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.professional-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.139) 100%);
+    pointer-events: none;
+}
+
+/* ========== HEADER / NAVEGACIÓN ========== */
+.header {
+    position: fixed;
+    /* Fijo en la parte superior */
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Blanco con 95% de opacidad */
+    backdrop-filter: blur(10px);
+    /* Efecto de desenfoque del fondo */
+    z-index: 1000;
+    /* Asegura que esté sobre otros elementos */
+    border-bottom: 1px solid #eeeeee;
+    /* Línea sutil de separación */
+    padding: 1rem 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Distribuye logo a la izquierda, menú a la derecha */
+    align-items: center;
+}
+
+.logo a {
+    text-decoration: none;
+    /* Elimina subrayado del enlace */
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    /* Espaciado entre letras elegante */
+}
+
+.logo-first {
+    font-weight: 600;
+}
+
+.logo-last {
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    /* Elimina puntos de lista */
+    gap: 2rem;
+    /* Espacio entre elementos del menú */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+    /* Transición suave del color */
+}
+
+.nav-link:hover {
+    color: #1a1a1a;
+}
+
+/* Línea sutil al pasar el mouse */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #1a1a1a;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+    min-height: 100vh;
+    /* Ocupa al menos toda la pantalla */
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    /* Compensa el header fijo */
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    /* Gradiente sutil */
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-title {
+    margin-bottom: 1rem;
+}
+
+.hero-greeting {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #666666;
+    margin-bottom: 0.5rem;
+}
+
+.hero-name {
+    display: block;
+    font-size: 4rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #777777;
+    margin-bottom: 2rem;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 3rem;
+    color: #555555;
+}
+
+/* ========== BOTONES ========== */
+.btn-primary {
+    display: inline-block;
+    background-color: #1a1a1a;
+    /* Negro elegante */
+    color: white;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #1a1a1a;
+    /* Borde del mismo color */
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: #1a1a1a;
+    /* Inversión de colores al pasar el mouse */
+}
+
+/* ========== SECCIONES ========== */
+.section {
+    padding: 6rem 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* Línea decorativa bajo el título */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #1a1a1a;
+}
+
+.section-subtitle {
+    color: #777777;
+    font-size: 1.1rem;
+}
+
+/* ========== TIMELINE EXPERIENCIA ========== */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-date {
+    min-width: 120px;
+    font-weight: 500;
+    color: #777777;
+    padding-top: 0.5rem;
+}
+
+.timeline-content {
+    flex: 1;
+    padding-left: 2rem;
+    border-left: 2px solid #eeeeee;
+    /* Línea vertical sutil */
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+/* Punto en la línea de tiempo */
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+}
+
+.timeline-title {
+    margin-bottom: 0.5rem;
+}
+
+.timeline-company {
+    color: #777777;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.timeline-description {
+    list-style: none;
+    color: #555555;
+}
+
+.timeline-description li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+/* Punto decorativo en lista */
+.timeline-description li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+}
+
+/* ========== SOBRE MÍ ========== */
+.about-section {
+    background-color: #f9f9f9;
+    /* Fondo ligeramente diferente */
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-paragraph {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.about-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.detail-item h4 {
+    margin-bottom: 0.5rem;
+    color: #333333;
+}
+
+.detail-sub {
+    color: #777777;
+    font-size: 0.9rem;
+}
+
+/* ========== SECCIÓN CERTIFICACIONES ========== */
+.certifications-section {
+    background-color: #ffffff;
+}
+
+.certifications-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.certifications-list {
+    list-style: none;
+    /* Elimina los puntos de lista */
+}
+
+.certification-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #eeeeee;
+    /* Línea sutil entre certificaciones */
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Elimina la línea del último elemento */
+.certification-item:last-child {
+    border-bottom: none;
+}
+
+/* ========== CONTACTO ========== */
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-item h4 {
+    margin-bottom: 0.5rem;
+    color: #333333;
+}
+
+/* ========== FORMULARIO ========== */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #dddddd;
+    background-color: #ffffffc6;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #333333;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    /* Borde negro al enfocar */
+}
+
+.form-group textarea {
+    resize: vertical;
+    /* Solo permite redimensionar verticalmente */
+    min-height: 150px;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background-color: #1a1a1a;
+    /* Negro elegante */
+    color: #cccccc;
+    /* Texto gris claro */
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+/* Media Queries: Adapta el diseño a diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    
+    .hero-name {
+        font-size: 2.5rem;
+    }
+    
+    .nav-menu {
+        display: none;
+        /* Oculta menú en móviles (podrías añadir menú hamburguesa) */
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline-content {
+        padding-left: 1rem;
+        border-left: none;
+        border-top: 2px solid #eeeeee;
+        padding-top: 1rem;
+    }
+    
+    .timeline-content::before {
+        left: 0;
+        top: -6px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* ========== ANIMACIONES SUTILES ========== */
+/* Fade-in suave al cargar */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content, .section {
+    animation: fadeIn 0.8s ease-out;
+}
