@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // FUNCIONES ESPECÍFICAS
 // ==============================================
 
-// ========== 2. FORMULARIO DE CONTACTO ==========
+// ========== 2. FORMULARIO DE CONTACTO - VERSIÓN CORREGIDA ==========
 function inicializarFormulario() {
     const form = document.getElementById('contactForm');
     
     if (!form) return;
     
-    // ✅ REEMPLAZA CON TU URL REAL
+    // ✅ TU URL (sin cambios)
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkO-HF1f4egV0LkesVb6fWUjTkx4UTRz-maJ1ALuxvDyju51zKjqwokb1Is1cC4xG4wA/exec';
     
     form.addEventListener('submit', async function(e) {
@@ -48,12 +48,12 @@ function inicializarFormulario() {
         
         // Validar
         if (!name || !email || !message) {
-            mostrarAlerta('Por favor, completa todos los campos.', 'error');
+            alert('Por favor, completa todos los campos.');
             return;
         }
         
         if (!validarEmail(email)) {
-            mostrarAlerta('Por favor, ingresa un email válido.', 'error');
+            alert('Por favor, ingresa un email válido.');
             return;
         }
         
@@ -64,9 +64,10 @@ function inicializarFormulario() {
         btn.disabled = true;
         
         try {
-            // Enviar datos
+            // IMPORTANTE: Usar mode 'no-cors' para Google Apps Script
             const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors', // ← ¡ESTO ES IMPORTANTE!
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -77,24 +78,18 @@ function inicializarFormulario() {
                 })
             });
             
-            // Intentar leer respuesta
-            let result;
-            try {
-                result = await response.json();
-            } catch {
-                result = { status: 'success' }; // Si no puede parsear, asumir éxito
-            }
+            // Con 'no-cors' no podemos leer la respuesta, pero asumimos éxito
+            // Revisa si realmente se guardó en Sheets
             
-            if (result.status === 'success') {
-                mostrarAlerta('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
-                form.reset();
-            } else {
-                mostrarAlerta('⚠️ ' + (result.message || 'Error al enviar.'), 'error');
-            }
+            alert('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.');
+            form.reset();
+            
+            // Opcional: Mostrar mensaje más bonito
+            mostrarAlerta('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
             
         } catch (error) {
             console.error('Error:', error);
-            mostrarAlerta('❌ Error de conexión. Por favor, contáctame directamente por email.', 'error');
+            alert('❌ Error al enviar. Por favor, usa el email directamente: diegosmk16@gmail.com');
         } finally {
             // Restaurar botón
             btn.textContent = originalText;
@@ -382,6 +377,7 @@ function actualizarAnioAutomatico() {
 
 // Verificar cada hora (3600000 ms = 1 hora)
 setInterval(actualizarAnioAutomatico, 3600000);
+
 
 
 
