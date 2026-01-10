@@ -5,31 +5,127 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentYear = new Date().getFullYear();
     document.getElementById('currentYear').textContent = currentYear;
     
-    // ========== 2. ENVÍO DE FORMULARIO ==========
+   // ========== FORMULARIO GOOGLE SHEETS ==========
+document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnLoader = document.getElementById('btnLoader');
+    
+    // URL DE TU WEB APP - ¡IMPORTANTE!
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwX1nWhbPiXQlhaEvP34aAAgjwERr75Xoe7pSZAkj9tF5bTNm35UYLz_7L4z23Ki9grZg/exec';
+    // ↑ REEMPLAZA CON TU URL REAL ↑
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Previene el envío normal
+        contactForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
             
-            // Obtiene los valores del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            // Validación básica
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
             
-            // Validación simple
             if (!name || !email || !message) {
-                alert('Por favor, completa todos los campos.');
+                showFormStatus('Por favor, completa todos los campos.', 'error');
                 return;
             }
             
-            // Aquí normalmente enviarías los datos a un servidor
-            // Por ahora, solo mostraremos un mensaje
-            alert(`Gracias ${name}, tu mensaje ha sido enviado. Te contactaré pronto.`);
+            // Validar email
+            if (!isValidEmail(email)) {
+                showFormStatus('Por favor, ingresa un email válido.', 'error');
+                return;
+            }
             
-            // Limpia el formulario
-            contactForm.reset();
+            // Mostrar "enviando..."
+            setFormLoading(true);
+            
+            // Datos a enviar
+            const formData = {
+                name: name,
+                email: email,
+                message: message,
+                _gotcha: document.getElementById('_gotcha').value // Anti-spam
+            };
+            
+            try {
+                // Enviar a Google Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Importante para Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Con "no-cors" no podemos leer la respuesta, pero asumimos éxito
+                showFormStatus('¡Mensaje enviado! Te contactaré pronto.', 'success');
+                contactForm.reset();
+                
+                // Opcional: Redirigir a página de gracias después de 2 segundos
+                setTimeout(() => {
+                    showFormStatus('', 'success'); // Limpiar mensaje
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showFormStatus('Error al enviar. Por favor, contáctame directamente por email.', 'error');
+            } finally {
+                setFormLoading(false);
+            }
         });
+    }
+    
+    // Función para mostrar estado del formulario
+    function showFormStatus(message, type) {
+        if (!formStatus) return;
+        
+        formStatus.textContent = message;
+        formStatus.className = 'form-status form-status-' + type;
+        formStatus.style.display = message ? 'block' : 'none';
+        
+        // Auto-ocultar después de 5 segundos
+        if (message && type === 'success') {
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 5000);
+        }
+    }
+    
+    // Función para estado de carga
+    function setFormLoading(isLoading) {
+        if (!submitBtn || !btnText || !btnLoader) return;
+        
+        if (isLoading) {
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline';
+            submitBtn.disabled = true;
+        } else {
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    }
+    
+    // Validación de email
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Opcional: Validación en tiempo real
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
+            if (this.value && !isValidEmail(this.value)) {
+                this.style.borderColor = '#e74c3c';
+            } else {
+                this.style.borderColor = '#dddddd';
+            }
+        });
+    }
+});
     }
     
     // ========== 3. SCROLL SUAVE PARA ENLACES INTERNOS ==========
@@ -155,33 +251,6 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.classList.remove('active');
             document.body.classList.remove('no-scroll');
         }
-    });
-});
-
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Usa la URL de tu Web App
-    fetch('https://script.google.com/macros/s/AKfycbwo6fb090c1VV_5V8x8P_vB4k_As6Lo3OW_aixfugrlqEw5ovu3i7iqVD0Fu4KOwPASJg/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(() => {
-        alert('¡Mensaje enviado!');
-        document.getElementById('contactForm').reset();
-    })
-    .catch(() => {
-        alert('Error al enviar. Usa el email directamente.');
     });
 });
 
