@@ -1,48 +1,33 @@
 /* ========== RESET Y CONFIGURACIÓN GLOBAL ========== */
-/* Reset: Elimina márgenes y padding por defecto del navegador */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* box-sizing: border-box hace que padding y border se incluyan en el width */
 }
 
 html {
     scroll-behavior: smooth;
-    /* Desplazamiento suave al hacer clic en enlaces internos */
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    /* Fuente principal: Inter (moderna y legible) */
     color: #333333;
-    /* Color de texto principal - gris oscuro formal */
     line-height: 1.6;
-    /* Espaciado entre líneas para mejor lectura */
     background-color: #ffffff;
-    /* Fondo blanco puro - minimalista */
 }
 
 .container {
     max-width: 1200px;
-    /* Ancho máximo del contenido */
     margin: 0 auto;
-    /* Centra el contenedor */
     padding: 0 20px;
-    /* Padding lateral en móviles */
 }
 
 /* ========== TIPOGRAFÍA FORMAL ========== */
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
-    /* Fuente serif elegante para títulos */
     font-weight: 500;
-    /* Peso medio (no muy grueso) */
     color: #1a1a1a;
-    /* Negro suave, no puro */
 }
-
-
 
 h1 { font-size: 3.5rem; }
 h2 { font-size: 2.5rem; }
@@ -51,7 +36,6 @@ h4 { font-size: 1.25rem; }
 
 p {
     color: #555555;
-    /* Gris medio para texto de párrafo */
     font-size: 1.1rem;
 }
 
@@ -94,34 +78,26 @@ p {
 /* ========== HEADER / NAVEGACIÓN ========== */
 .header {
     position: fixed;
-    /* Fijo en la parte superior */
     top: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.95);
-    /* Blanco con 95% de opacidad */
     backdrop-filter: blur(10px);
-    /* Efecto de desenfoque del fondo */
     z-index: 1000;
-    /* Asegura que esté sobre otros elementos */
     border-bottom: 1px solid #eeeeee;
-    /* Línea sutil de separación */
     padding: 1rem 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
-    /* Distribuye logo a la izquierda, menú a la derecha */
     align-items: center;
 }
 
 .logo a {
     text-decoration: none;
-    /* Elimina subrayado del enlace */
     color: #1a1a1a;
     font-size: 1.5rem;
     letter-spacing: 1px;
-    /* Espaciado entre letras elegante */
 }
 
 .logo-first {
@@ -133,12 +109,11 @@ p {
     opacity: 0.8;
 }
 
+/* NAV MENU - VERSIÓN CORREGIDA */
 .nav-menu {
     display: flex;
     list-style: none;
-    /* Elimina puntos de lista */
     gap: 2rem;
-    /* Espacio entre elementos del menú */
 }
 
 .nav-link {
@@ -148,14 +123,12 @@ p {
     padding: 0.5rem 0;
     position: relative;
     transition: color 0.3s ease;
-    /* Transición suave del color */
 }
 
 .nav-link:hover {
     color: #1a1a1a;
 }
 
-/* Línea sutil al pasar el mouse */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -174,13 +147,10 @@ p {
 /* ========== HERO SECTION ========== */
 .hero {
     min-height: 100vh;
-    /* Ocupa al menos toda la pantalla */
     display: flex;
     align-items: center;
     padding-top: 80px;
-    /* Compensa el header fijo */
     background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
-    /* Gradiente sutil */
 }
 
 .hero-content {
@@ -223,7 +193,6 @@ p {
 .btn-primary {
     display: inline-block;
     background-color: #1a1a1a;
-    /* Negro elegante */
     color: white;
     padding: 1rem 2.5rem;
     text-decoration: none;
@@ -234,13 +203,11 @@ p {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid #1a1a1a;
-    /* Borde del mismo color */
 }
 
 .btn-primary:hover {
     background-color: transparent;
     color: #1a1a1a;
-    /* Inversión de colores al pasar el mouse */
 }
 
 /* ========== SECCIONES ========== */
@@ -259,7 +226,6 @@ p {
     margin-bottom: 1rem;
 }
 
-/* Línea decorativa bajo el título */
 .section-title::after {
     content: '';
     position: absolute;
@@ -299,12 +265,10 @@ p {
     flex: 1;
     padding-left: 2rem;
     border-left: 2px solid #eeeeee;
-    /* Línea vertical sutil */
     padding-bottom: 2rem;
     position: relative;
 }
 
-/* Punto en la línea de tiempo */
 .timeline-content::before {
     content: '';
     position: absolute;
@@ -337,7 +301,6 @@ p {
     padding-left: 1.5rem;
 }
 
-/* Punto decorativo en lista */
 .timeline-description li::before {
     content: '•';
     position: absolute;
@@ -348,7 +311,6 @@ p {
 /* ========== SOBRE MÍ ========== */
 .about-section {
     background-color: #f9f9f9;
-    /* Fondo ligeramente diferente */
 }
 
 .about-content {
@@ -390,20 +352,42 @@ p {
 
 .certifications-list {
     list-style: none;
-    /* Elimina los puntos de lista */
 }
 
 .certification-item {
     padding: 1.5rem 0;
     border-bottom: 1px solid #eeeeee;
-    /* Línea sutil entre certificaciones */
     position: relative;
     transition: all 0.3s ease;
 }
 
-/* Elimina la línea del último elemento */
 .certification-item:last-child {
     border-bottom: none;
+}
+
+.certification-item:hover {
+    background-color: #f9f9f9;
+    padding-left: 1rem;
+}
+
+.certification-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.certification-date {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #666666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
 }
 
 /* ========== CONTACTO ========== */
@@ -449,21 +433,17 @@ p {
 .form-group textarea:focus {
     outline: none;
     border-color: #1a1a1a;
-    /* Borde negro al enfocar */
 }
 
 .form-group textarea {
     resize: vertical;
-    /* Solo permite redimensionar verticalmente */
     min-height: 150px;
 }
 
 /* ========== FOOTER ========== */
 .footer {
     background-color: #1a1a1a;
-    /* Negro elegante */
     color: #cccccc;
-    /* Texto gris claro */
     padding: 2rem 0;
     text-align: center;
 }
@@ -474,7 +454,6 @@ p {
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
-/* Media Queries: Adapta el diseño a diferentes tamaños de pantalla */
 @media (max-width: 768px) {
     h1 { font-size: 2.5rem; }
     h2 { font-size: 2rem; }
@@ -483,9 +462,46 @@ p {
         font-size: 2.5rem;
     }
     
+    /* MENÚ HAMBURGUESA - CORREGIDO */
     .nav-menu {
-        display: none;
-        /* Oculta menú en móviles (podrías añadir menú hamburguesa) */
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background-color: white;
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+        text-align: left;
+        padding: 2rem;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 999;
+        gap: 1.5rem;
+        overflow-y: auto;
+        display: flex; /* Cambiado de none a flex */
+    }
+    
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    .nav-item {
+        width: 100%;
+    }
+    
+    .nav-link {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f0f0f0;
+        color: #333;
+    }
+    
+    .nav-link:hover {
+        color: #1a1a1a;
+        background-color: #f9f9f9;
+        padding-left: 10px;
     }
     
     .timeline-item {
@@ -508,10 +524,52 @@ p {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+    
+    /* Header fijo en móviles */
+    .header {
+        padding: 0.8rem 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+    }
+    
+    /* Ajuste para header fijo */
+    .hero {
+        padding-top: 100px;
+    }
+    
+    .section:first-of-type {
+        padding-top: 100px;
+    }
+    
+    /* Foto más pequeña en móviles */
+    .photo-frame {
+        width: 170px;
+        height: 170px;
+    }
 }
 
-/* ========== ANIMACIONES SUTILES ========== */
-/* Fade-in suave al cargar */
+/* Móviles muy pequeños */
+@media (max-width: 480px) {
+    .photo-frame {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .hero-name {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+/* ========== ANIMACIONES ========== */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -519,7 +577,6 @@ p {
 
 .hero-content, .section {
     animation: fadeIn 0.8s ease-out;
-
 }
 
 .fade-in {
@@ -531,61 +588,6 @@ p {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
-
-}
-
-/* ========== NAVEGACIÓN RESPONSIVE ========== */
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    
-    /* Para móviles: menú vertical oculto */
-    @media (max-width: 768px) {
-        position: fixed;
-        top: 70px; /* Altura del header */
-        right: -100%;
-        flex-direction: column;
-        background-color: white;
-        width: 80%;
-        max-width: 300px;
-        height: calc(100vh - 70px);
-        text-align: left;
-        padding: 2rem;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
-        z-index: 999;
-        gap: 1.5rem;
-        overflow-y: auto;
-    }
-}
-
-/* Clase que se añade con JavaScript para mostrar menú */
-.nav-menu.active {
-    @media (max-width: 768px) {
-        right: 0;
-    }
-}
-
-/* Enlaces del menú en móvil */
-@media (max-width: 768px) {
-    .nav-item {
-        width: 100%;
-    }
-    
-    .nav-link {
-        display: block;
-        padding: 1rem 0;
-        font-size: 1.1rem;
-        border-bottom: 1px solid #f0f0f0;
-        color: #333;
-    }
-    
-    .nav-link:hover {
-        color: #1a1a1a;
-        background-color: #f9f9f9;
-        padding-left: 10px;
-    }
 }
 
 /* ========== BOTÓN HAMBURGUESA ========== */
@@ -595,8 +597,10 @@ p {
     cursor: pointer;
     padding: 5px;
     z-index: 1000;
-    
-    @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+    .hamburger {
         display: flex;
     }
 }
@@ -610,7 +614,6 @@ p {
     transition: all 0.3s ease;
 }
 
-/* Animación del hamburguesa a X */
 .hamburger.active .bar:nth-child(1) {
     transform: rotate(-45deg) translate(-6px, 6px);
 }
@@ -623,7 +626,7 @@ p {
     transform: rotate(45deg) translate(-6px, -6px);
 }
 
-/* Overlay cuando el menú está abierto */
+/* ========== OVERLAY MENÚ ========== */
 .menu-overlay {
     display: none;
     position: fixed;
@@ -633,19 +636,18 @@ p {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
-    
-    @media (max-width: 768px) {
-        display: none; /* Lo controla JavaScript */
-    }
 }
 
 .menu-overlay.active {
-    @media (max-width: 768px) {
-        display: block;
-    }
+    display: block;
 }
 
-/* ========== ESTILOS PARA FORMULARIO ========== */
+/* Evitar scroll cuando el menú está abierto */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* ========== ESTILOS FORMULARIO ========== */
 .form-status {
     padding: 12px 16px;
     margin: 1rem 0;
@@ -678,13 +680,11 @@ p {
     text-decoration: underline;
 }
 
-/* Botón de carga */
 .btn-primary:disabled {
     opacity: 0.7;
     cursor: not-allowed;
 }
 
-/* Animación de puntos para "Enviando..." */
 @keyframes dots {
     0%, 20% { content: '.'; }
     40% { content: '..'; }
@@ -695,4 +695,45 @@ p {
     content: '';
     animation: dots 1.5s steps(1, end) infinite;
 }
+
+/* ========== CERTIFICACIONES GRID PARA DESKTOP ========== */
+@media (min-width: 992px) {
+    .certifications-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .certification-item {
+        border-bottom: none;
+        border-right: 1px solid #eeeeee;
+        padding: 1.5rem;
+    }
+    
+    .certification-item:nth-child(even) {
+        border-right: none;
+    }
+    
+    .certification-item:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Ajuste responsive para grid de certificaciones */
+@media (max-width: 768px) {
+    .certifications-list {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .certification-item {
+        border-right: none !important;
+        padding: 1.5rem 0 !important;
+        border-bottom: 1px solid #eeeeee !important;
+    }
+    
+    .certification-item:last-child {
+        border-bottom: none !important;
+    }
+}
+
 
