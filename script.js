@@ -63,11 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showFormStatus('¡Mensaje enviado! Te contactaré pronto.', 'success');
                 contactForm.reset();
                 
-                // Opcional: Redirigir a página de gracias después de 2 segundos
-                setTimeout(() => {
-                    showFormStatus('', 'success'); // Limpiar mensaje
-                }, 3000);
-                
             } catch (error) {
                 console.error('Error:', error);
                 showFormStatus('Error al enviar. Por favor, contáctame directamente por email.', 'error');
@@ -253,4 +248,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
