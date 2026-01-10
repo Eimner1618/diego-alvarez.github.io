@@ -168,7 +168,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     };
     
     // Usa la URL de tu Web App
-    fetch('https://script.google.com/macros/s/ID_DEL_SCRIPT/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwo6fb090c1VV_5V8x8P_vB4k_As6Lo3OW_aixfugrlqEw5ovu3i7iqVD0Fu4KOwPASJg/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -184,3 +184,4 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         alert('Error al enviar. Usa el email directamente.');
     });
 });
+
