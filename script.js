@@ -90,16 +90,71 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-// ========== AÑADE ESTO AL CSS PARA LOS EFECTOS ==========
-/*
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
+// ========== MENÚ HAMBURGUESA ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Crea el overlay dinámicamente
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
+    
+    // Función para abrir/cerrar menú
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    }
+    
+    // Evento click en hamburguesa
+    if (hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation(); // Previene que el click se propague
+            toggleMenu();
+        });
+    }
+    
+    // Cerrar menú al hacer click en un enlace
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    });
+    
+    // Cerrar menú al hacer click en el overlay
+    overlay.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    });
+    
+    // Cerrar menú al presionar Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+    
+    // Cerrar menú al hacer scroll (opcional)
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+});
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-*/
