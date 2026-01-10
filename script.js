@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
     
     // ✅ REEMPLAZA CON TU URL REAL
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8iwx6Q0-8SskcZbI8Bz1FJNUjnSqvn2gFgnn6TB172-wh1qrYQpE7XptALZVN2ygr/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnjCQcs2XkQtgaOaG9nVcZCEc81llomXfjPuNdoFTlKNnmyF5yynTY9uehvAR2KAyCzA/exec';
     
     if (form) {
         form.addEventListener('submit', async function(e) {
@@ -199,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
 
