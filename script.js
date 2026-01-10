@@ -5,118 +5,70 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentYear = new Date().getFullYear();
     document.getElementById('currentYear').textContent = currentYear;
     
-   // ========== FORMULARIO GOOGLE SHEETS ==========
+// FORMULARIO GOOGLE SHEETS - VERSIÓN SIMPLIFICADA
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoader = document.getElementById('btnLoader');
+    const form = document.getElementById('contactForm');
     
-    // URL DE TU WEB APP - ¡IMPORTANTE!
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwX1nWhbPiXQlhaEvP34aAAgjwERr75Xoe7pSZAkj9tF5bTNm35UYLz_7L4z23Ki9grZg/exec';
-    // ↑ REEMPLAZA CON TU URL REAL ↑
+    // ✅ REEMPLAZA CON TU URL REAL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzHQsgeTK31bseMjYHA1VcAiFDR3iow5x7REO6RWuVgsIa5mgFuh5l-2TommlK6P_2dQ/exec';
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Validación básica
+            // Obtener datos
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             
+            // Validar
             if (!name || !email || !message) {
-                showFormStatus('Por favor, completa todos los campos.', 'error');
+                alert('Por favor, completa todos los campos.');
                 return;
             }
             
-            // Validar email
-            if (!isValidEmail(email)) {
-                showFormStatus('Por favor, ingresa un email válido.', 'error');
-                return;
-            }
-            
-            // Mostrar "enviando..."
-            setFormLoading(true);
-            
-            // Datos a enviar
-            const formData = {
-                name: name,
-                email: email,
-                message: message,
-                _gotcha: document.getElementById('_gotcha').value // Anti-spam
-            };
+            // Cambiar botón
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
             
             try {
-                // Enviar a Google Apps Script
+                // Enviar datos
                 const response = await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Importante para Google Apps Script
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message
+                    })
                 });
                 
-                // Con "no-cors" no podemos leer la respuesta, pero asumimos éxito
-                showFormStatus('¡Mensaje enviado! Te contactaré pronto.', 'success');
-                contactForm.reset();
+                // Intentar leer respuesta
+                let result;
+                try {
+                    result = await response.json();
+                } catch {
+                    result = { status: 'success' }; // Si no puede parsear, asumir éxito
+                }
+                
+                if (result.status === 'success') {
+                    alert('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.');
+                    form.reset();
+                } else {
+                    alert('⚠️ ' + (result.message || 'Error al enviar.'));
+                }
                 
             } catch (error) {
                 console.error('Error:', error);
-                showFormStatus('Error al enviar. Por favor, contáctame directamente por email.', 'error');
+                alert('❌ Error de conexión. Por favor, contáctame directamente por email.');
             } finally {
-                setFormLoading(false);
-            }
-        });
-    }
-    
-    // Función para mostrar estado del formulario
-    function showFormStatus(message, type) {
-        if (!formStatus) return;
-        
-        formStatus.textContent = message;
-        formStatus.className = 'form-status form-status-' + type;
-        formStatus.style.display = message ? 'block' : 'none';
-        
-        // Auto-ocultar después de 5 segundos
-        if (message && type === 'success') {
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
-        }
-    }
-    
-    // Función para estado de carga
-    function setFormLoading(isLoading) {
-        if (!submitBtn || !btnText || !btnLoader) return;
-        
-        if (isLoading) {
-            btnText.style.display = 'none';
-            btnLoader.style.display = 'inline';
-            submitBtn.disabled = true;
-        } else {
-            btnText.style.display = 'inline';
-            btnLoader.style.display = 'none';
-            submitBtn.disabled = false;
-        }
-    }
-    
-    // Validación de email
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-    
-    // Opcional: Validación en tiempo real
-    const emailInput = document.getElementById('email');
-    if (emailInput) {
-        emailInput.addEventListener('blur', function() {
-            if (this.value && !isValidEmail(this.value)) {
-                this.style.borderColor = '#e74c3c';
-            } else {
-                this.style.borderColor = '#dddddd';
+                // Restaurar botón
+                btn.textContent = originalText;
+                btn.disabled = false;
             }
         });
     }
@@ -247,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
 
