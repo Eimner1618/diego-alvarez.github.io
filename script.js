@@ -158,3 +158,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+    
+    // Usa la URL de tu Web App
+    fetch('https://script.google.com/macros/s/ID_DEL_SCRIPT/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        alert('¡Mensaje enviado!');
+        document.getElementById('contactForm').reset();
+    })
+    .catch(() => {
+        alert('Error al enviar. Usa el email directamente.');
+    });
+});
