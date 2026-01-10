@@ -24,21 +24,20 @@
                 </div>
 
                 <!-- MENÚ DESKTOP (visible en pantallas grandes) -->
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
-                <li class="nav-item"><a href="#experiencia" class="nav-link">Experiencia</a></li>
-                <li class="nav-item"><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-                <li class="nav-item"><a href="#certificaciones" class="nav-link">Certificaciones</a></li>
-                <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
-            
-            <!-- BOTÓN HAMBURGUESA (solo móviles) -->
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                    <li class="nav-item"><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+                    <li class="nav-item"><a href="#certificaciones" class="nav-link">Certificaciones</a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
                 
+                <!-- BOTÓN HAMBURGUESA (solo móviles) -->
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </nav>
         </div>
     </header>
@@ -48,16 +47,15 @@
         <div class="container">
             <div class="hero-content">
                 
+                <!-- FOTO ELEGANTE CON MARCO - CORREGIDO -->
                 <div class="profile-elegant">
-                    <div class="photo_frame">
+                    <div class="photo-frame">  <!-- CORRECTO: photo-frame -->
                         <img src="images/foto-perfil.jpg" 
-                            alt="Diego Alvarez - Profecional" 
-                            class="profecional-photo">
+                             alt="Diego Alvarez - Profesional"  <!-- CORRECTO: Profesional -->
+                             class="professional-photo">  <!-- CORRECTO: professional-photo -->
                         <div class="photo-overlay"></div>
                     </div>
                 </div>
-
-            
 
                 <!-- TEXTO PRINCIPAL CON JERARQUÍA CLARA -->
                 <h1 class="hero-title">
@@ -122,6 +120,7 @@
                             <li>Asistencia en Proyectos de Infraestructura: Apoyé en la implementación y actualización de infraestructuras de red y servidores, contribuyendo a mejorar la eficiencia operativa.</li>
                         </ul>
                     </div>
+                </div> <!-- Faltaba cerrar este div -->
             </div>
         </div>
     </section>
@@ -151,7 +150,7 @@
                         <div class="detail-item">
                             <h4 class="detail-title">Idiomas</h4>
                             <p>Español: Nativo</p>
-                            <p>Inglés: Basico A2</p>
+                            <p>Inglés: Básico A2</p>
                         </div>
                     </div>
                 </div>
@@ -159,6 +158,7 @@
         </div>
     </section>
 
+    <!-- ========== CERTIFICACIONES - CORREGIDO ========== -->
     <section id="certificaciones" class="section certifications-section">
         <div class="container">
             <div class="section-header">
@@ -181,12 +181,13 @@
                         <p class="certification-date">2024</p>
                     </li>
                     <li class="certification-item">
-                        <h4 class="certification-title">Itil AW Areness</h4>
+                        <h4 class="certification-title">Itil AW Awareness</h4>
                         <p class="certification-date">2025</p>
                     </li>
                     <li class="certification-item">
                         <h4 class="certification-title">Curso certificado en prevención de phishing</h4>
                         <p class="certification-date">2025</p>
+                    </li> <!-- Faltaba cerrar este li -->
                 </ul>
             </div>
         </div>
@@ -218,37 +219,36 @@
                 </div>
                 
                 <!-- FORMULARIO MINIMALISTA -->
-              
-    <form class="contact-form" id="contactForm">
-    <!-- Campo anti-spam (oculto) -->
-    <div style="display: none;">
-        <input type="text" name="_gotcha" id="_gotcha">
-    </div>
-    
-    <div class="form-group">
-        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
-    </div>
-    <div class="form-group">
-        <input type="email" id="email" name="email" placeholder="Tu email" required>
-    </div>
-    <div class="form-group">
-        <textarea id="message" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
-    </div>
-    
-    <!-- Estado del envío -->
-    <div id="formStatus" class="form-status" style="display: none;"></div>
-    
-    <button type="submit" class="btn-primary" id="submitBtn">
-        <span id="btnText">Enviar mensaje</span>
-        <span id="btnLoader" style="display: none;">Enviando...</span>
-    </button>
-    
-    <!-- Nota alternativa -->
-    <p class="form-note">
-        Si tienes problemas con el formulario, escríbeme directamente a: 
-        <a href="mailto:diegosmk16@gmail.com">diegosmk16@gmail.com</a>
-    </p>
-</form>
+                <form class="contact-form" id="contactForm">
+                    <!-- Campo anti-spam (oculto) -->
+                    <div style="display: none;">
+                        <input type="text" name="_gotcha" id="_gotcha">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
+                    </div>
+                    
+                    <!-- Estado del envío -->
+                    <div id="formStatus" class="form-status" style="display: none;"></div>
+                    
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span id="btnText">Enviar mensaje</span>
+                        <span id="btnLoader" style="display: none;">Enviando...</span>
+                    </button>
+                    
+                    <!-- Nota alternativa -->
+                    <p class="form-note">
+                        Si tienes problemas con el formulario, escríbeme directamente a: 
+                        <a href="mailto:diegosmk16@gmail.com">diegosmk16@gmail.com</a>
+                    </p>
+                </form>
             </div>
         </div>
     </section>
@@ -263,10 +263,7 @@
     <!-- JavaScript para funcionalidades básicas -->
     <script src="script.js"></script>
 </body>
-
-
 </html>
-
 
 
 
