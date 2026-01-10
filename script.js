@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-    }
     
     // ========== 3. SCROLL SUAVE PARA ENLACES INTERNOS ==========
     // (Ya funciona por el CSS: html { scroll-behavior: smooth; })
@@ -248,5 +247,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
