@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ========== 5. ANIMACIONES SCROLL ==========
     inicializarAnimaciones();
+
+      // ========== 6. MODO OSCURO ==========
+    inicializarModoOscuro();
 });
 
 // ==============================================
@@ -437,6 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ... resto de tu código ...
 });
+
 
 
 
