@@ -389,57 +389,60 @@ function inicializarModoOscuro() {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.querySelector('.theme-icon');
     
-    if (!themeToggle) return;
+    if (!themeToggle) {
+        console.log('⚠️ Botón de tema no encontrado');
+        return;
+    }
     
     // Verificar preferencia guardada o del sistema
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme-preference');
     
-    // Aplicar tema guardado o preferencia del sistema
-    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
-        document.body.classList.add('dark-mode');
-        themeIcon.textContent = '☀️'; // Sol para modo oscuro
-    } else {
-        themeIcon.textContent = '🌙'; // Luna para modo claro
+    // Función para aplicar tema
+    function aplicarTema(esOscuro) {
+        if (esOscuro) {
+            document.body.classList.add('dark-mode');
+            themeIcon.textContent = '☀️'; // Sol para modo oscuro
+            localStorage.setItem('theme-preference', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeIcon.textContent = '🌙'; // Luna para modo claro
+            localStorage.setItem('theme-preference', 'light');
+        }
     }
     
-    // Toggle manual
+    // Aplicar tema guardado o preferencia del sistema
+    if (savedTheme === 'dark') {
+        aplicarTema(true);
+    } else if (savedTheme === 'light') {
+        aplicarTema(false);
+    } else if (prefersDarkScheme.matches) {
+        aplicarTema(true);
+    } else {
+        aplicarTema(false);
+    }
+    
+    // Toggle manual al hacer clic
     themeToggle.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
+        const esModoOscuro = !document.body.classList.contains('dark-mode');
+        aplicarTema(esModoOscuro);
         
-        // Cambiar icono
-        if (document.body.classList.contains('dark-mode')) {
-            themeIcon.textContent = '☀️';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            themeIcon.textContent = '🌙';
-            localStorage.setItem('theme', 'light');
-        }
+        // Feedback visual
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 150);
     });
     
-    // Escuchar cambios en preferencia del sistema
+    // Escuchar cambios en preferencia del sistema (solo si no hay preferencia guardada)
     prefersDarkScheme.addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme')) { // Solo si usuario no eligió manualmente
-            if (e.matches) {
-                document.body.classList.add('dark-mode');
-                themeIcon.textContent = '☀️';
-            } else {
-                document.body.classList.remove('dark-mode');
-                themeIcon.textContent = '🌙';
-            }
+        if (!localStorage.getItem('theme-preference')) {
+            aplicarTema(e.matches);
         }
     });
+    
+    console.log('✅ Modo oscuro inicializado');
 }
-
-// Llamar la función en DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    // ... tu código existente ...
-    
-    // ========== 6. MODO OSCURO ==========
-    inicializarModoOscuro();
-    
-    // ... resto de tu código ...
-});
 
 
 
