@@ -379,6 +379,65 @@ function actualizarAnioAutomatico() {
 setInterval(actualizarAnioAutomatico, 3600000);
 
 
+// ==============================================
+// MODO OSCURO CON BOTÓN TOGGLE
+// ==============================================
+
+function inicializarModoOscuro() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    if (!themeToggle) return;
+    
+    // Verificar preferencia guardada o del sistema
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Aplicar tema guardado o preferencia del sistema
+    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+        themeIcon.textContent = '☀️'; // Sol para modo oscuro
+    } else {
+        themeIcon.textContent = '🌙'; // Luna para modo claro
+    }
+    
+    // Toggle manual
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        // Cambiar icono
+        if (document.body.classList.contains('dark-mode')) {
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+    
+    // Escuchar cambios en preferencia del sistema
+    prefersDarkScheme.addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) { // Solo si usuario no eligió manualmente
+            if (e.matches) {
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark-mode');
+                themeIcon.textContent = '🌙';
+            }
+        }
+    });
+}
+
+// Llamar la función en DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // ... tu código existente ...
+    
+    // ========== 6. MODO OSCURO ==========
+    inicializarModoOscuro();
+    
+    // ... resto de tu código ...
+});
 
 
 
