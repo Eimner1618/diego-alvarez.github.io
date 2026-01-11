@@ -36,7 +36,7 @@ function inicializarFormulario() {
     if (!form) return;
     
     // ✅ TU URL (sin cambios)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkO-HF1f4egV0LkesVb6fWUjTkx4UTRz-maJ1ALuxvDyju51zKjqwokb1Is1cC4xG4wA/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2Eq6dAImdV6FZb5eWc8VgXfkHWFG0UWDs7RCni3QqKniB0ti6yN5mmVhhgT6uktnZSg/exec';
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -377,6 +377,7 @@ function actualizarAnioAutomatico() {
 
 // Verificar cada hora (3600000 ms = 1 hora)
 setInterval(actualizarAnioAutomatico, 3600000);
+
 
 
 
