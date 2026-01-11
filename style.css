@@ -735,5 +735,22 @@ body.no-scroll {
         border-bottom: none !important;
     }
 }
+/* Ejemplo: Modo oscuro */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+}
+
+/* Ejemplo: Animaciones más avanzadas */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.profile-photo {
+    animation: float 3s ease-in-out infinite;
+}
 
 
