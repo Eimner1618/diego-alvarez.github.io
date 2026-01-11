@@ -26,7 +26,7 @@ body {
 h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
     font-weight: 500;
-    color: #1a1a1a;
+    color: var(--text-primary, #1a1a1a);
 }
 
 h1 { font-size: 3.5rem; }
@@ -234,7 +234,7 @@ p {
     transform: translateX(-50%);
     width: 60px;
     height: 2px;
-    background-color: #1a1a1a;
+    background-color:  var(--accent-color, #1a1a1a);
 }
 
 .section-subtitle {
@@ -276,7 +276,7 @@ p {
     top: 5px;
     width: 12px;
     height: 12px;
-    background-color: #1a1a1a;
+    background-color: #ffffff;
     border-radius: 50%;
 }
 
@@ -1040,6 +1040,7 @@ body.dark-mode .form-status-error {
     color: #fecaca;
     border-color: #991b1b;
 }
+
 
 
 
