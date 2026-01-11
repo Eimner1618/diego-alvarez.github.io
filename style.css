@@ -753,6 +753,293 @@ body.no-scroll {
     animation: float 3s ease-in-out infinite;
 }
 
+/* ========== CONTENEDOR PARA ELEMENTOS DERECHOS ========== */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* ========== BOTÓN TOGGLE MODO OSCURO ========== */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin: 0;
+    transition: transform 0.3s ease;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 2px;
+}
+
+/* ========== VARIABLES CSS PARA AMBOS MODOS ========== */
+:root {
+    /* Modo claro (valores por defecto) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --bg-card: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --text-muted: #777777;
+    --border-color: #eeeeee;
+    --accent-color: #1a1a1a;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --photo-frame-bg: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+/* Modo oscuro - se activa con clase .dark-mode */
+body.dark-mode {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888888;
+    --border-color: #333333;
+    --accent-color: #3b82f6;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --photo-frame-bg: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+}
+
+/* ========== APLICAR VARIABLES A TODO EL SITIO ========== */
+body.dark-mode {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header */
+body.dark-mode .header {
+    background-color: rgba(26, 26, 26, 0.95);
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-mode .theme-toggle {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* Logo */
+body.dark-mode .logo a {
+    color: var(--text-primary);
+}
+
+/* Hero */
+body.dark-mode .hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+body.dark-mode .hero-name {
+    color: var(--text-primary);
+}
+
+body.dark-mode .hero-subtitle,
+body.dark-mode .hero-description {
+    color: var(--text-secondary);
+}
+
+/* Títulos */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+    color: var(--text-primary);
+}
+
+/* Texto general */
+body.dark-mode p {
+    color: var(--text-secondary);
+}
+
+/* Subtítulos de secciones */
+body.dark-mode .section-subtitle,
+body.dark-mode .detail-sub,
+body.dark-mode .timeline-date,
+body.dark-mode .timeline-company {
+    color: var(--text-muted);
+}
+
+/* Botones */
+body.dark-mode .btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+/* Secciones con fondo especial */
+body.dark-mode .about-section {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .certifications-section {
+    background-color: var(--bg-primary);
+}
+
+/* Línea decorativa bajo títulos */
+body.dark-mode .section-title::after {
+    background-color: var(--accent-color);
+}
+
+/* Timeline */
+body.dark-mode .timeline-content {
+    border-left-color: var(--border-color);
+}
+
+body.dark-mode .timeline-content::before {
+    background-color: var(--accent-color);
+}
+
+body.dark-mode .timeline-description {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .timeline-description li::before {
+    color: var(--accent-color);
+}
+
+/* Certificaciones */
+body.dark-mode .certification-item {
+    border-bottom-color: var(--border-color);
+}
+
+body.dark-mode .certification-item:hover {
+    background-color: var(--bg-secondary);
+}
+
+body.dark-mode .certification-date {
+    background-color: var(--bg-card);
+    color: var(--text-secondary);
+}
+
+/* Formulario */
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+body.dark-mode .contact-form input:focus,
+body.dark-mode .contact-form textarea:focus {
+    border-color: var(--accent-color);
+}
+
+/* Información de contacto */
+body.dark-mode .contact-item h4 {
+    color: var(--text-primary);
+}
+
+body.dark-mode .contact-item p {
+    color: var(--text-secondary);
+}
+
+/* Nota del formulario */
+body.dark-mode .form-note {
+    color: var(--text-muted);
+}
+
+body.dark-mode .form-note a {
+    color: var(--accent-color);
+}
+
+/* Footer */
+body.dark-mode .footer {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/* Enlaces de navegación */
+body.dark-mode .nav-link {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .nav-link:hover {
+    color: var(--text-primary);
+}
+
+body.dark-mode .nav-link::after {
+    background-color: var(--accent-color);
+}
+
+/* Foto de perfil */
+body.dark-mode .photo-frame {
+    background: var(--photo-frame-bg);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+body.dark-mode .professional-photo {
+    border-color: var(--bg-card);
+}
+
+/* ========== MENÚ HAMBURGUESA EN MÓVIL ========== */
+@media (max-width: 768px) {
+    .navbar-right {
+        gap: 1rem;
+    }
+    
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+    
+    body.dark-mode .nav-menu {
+        background-color: var(--bg-secondary);
+    }
+    
+    body.dark-mode .nav-link {
+        border-bottom-color: var(--border-color);
+        color: var(--text-primary);
+    }
+    
+    body.dark-mode .nav-link:hover {
+        background-color: var(--bg-card);
+    }
+}
+
+/* Barras del menú hamburguesa */
+body.dark-mode .bar {
+    background-color: var(--text-primary);
+}
+
+/* Overlay del menú móvil */
+body.dark-mode .menu-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Estados del formulario */
+body.dark-mode .form-status-success {
+    background-color: #064e3b;
+    color: #a7f3d0;
+    border-color: #047857;
+}
+
+body.dark-mode .form-status-error {
+    background-color: #7f1d1d;
+    color: #fecaca;
+    border-color: #991b1b;
+}
 
 
 
