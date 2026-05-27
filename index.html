@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Alvarez | Portafolio Profesional</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Fuente elegante de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Inter: fuente sans-serif moderna, Playfair Display: serif elegante -->
 </head>
 
 <body>
@@ -15,7 +13,6 @@
     <header class="header">
         <div class="container">
             <nav class="navbar">
-                <!-- LOGO SIMPLE -->
                 <div class="logo">
                     <a href="#inicio">
                         <span class="logo-first">Diego</span>
@@ -23,46 +20,47 @@
                     </a>
                 </div>
 
-                <!-- BOTÓN MODO OSCURO -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                <span class="theme-icon">🌙</span>
-            </button>
+                <!-- CONTENEDOR PARA ELEMENTOS DE LA DERECHA -->
+                <div class="navbar-right">
+                    <!-- BOTÓN MODO OSCURO -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                        <span class="theme-icon">🌙</span>
+                    </button>
 
-                <!-- MENÚ DESKTOP (visible en pantallas grandes) -->
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="#experiencia" class="nav-link">Experiencia</a></li>
-                    <li class="nav-item"><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-                    <li class="nav-item"><a href="#certificaciones" class="nav-link">Certificaciones</a></li>
-                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-                
-                <!-- BOTÓN HAMBURGUESA (solo móviles) -->
-                <div class="hamburger" id="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <!-- MENÚ DESKTOP -->
+                    <ul class="nav-menu">
+                        <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                        <li class="nav-item"><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                        <li class="nav-item"><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                        <li class="nav-item"><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+                        <li class="nav-item"><a href="#certificaciones" class="nav-link">Certificaciones</a></li>
+                        <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                    </ul>
+                    
+                    <!-- BOTÓN HAMBURGUESA -->
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- ========== HERO SECTION - ELEGANTE ========== -->
+    <!-- ========== HERO SECTION ========== -->
     <section id="inicio" class="hero">
         <div class="container">
             <div class="hero-content">
-                
-                <!-- FOTO ELEGANTE CON MARCO - CORREGIDO -->
-            <div class="profile-elegant">
-    <div class="photo-frame">
-        <img src="images/foto-perfil.jpg" 
-             alt="Diego Alvarez - Profesional" 
-             class="professional-photo">
-        <div class="photo-overlay"></div>
-    </div>
-</div>
+                <div class="profile-elegant">
+                    <div class="photo-frame">
+                        <img src="images/foto-perfil.jpg" 
+                             alt="Diego Alvarez - Profesional" 
+                             class="professional-photo">
+                        <div class="photo-overlay"></div>
+                    </div>
+                </div>
 
-                <!-- TEXTO PRINCIPAL CON JERARQUÍA CLARA -->
                 <h1 class="hero-title">
                     <span class="hero-greeting">Hola, soy</span>
                     <span class="hero-name">Diego Armando Alvarez Valero</span>
@@ -76,7 +74,7 @@
         </div>
     </section>
 
-    <!-- ========== EXPERIENCIA LABORAL - TABLA ELEGANTE ========== -->
+    <!-- ========== EXPERIENCIA LABORAL ========== -->
     <section id="experiencia" class="section experience-section">
         <div class="container">
             <div class="section-header">
@@ -85,51 +83,76 @@
             </div>
             
             <div class="timeline">
-                <!-- EXPERIENCIA 1 -->
                 <div class="timeline-item">
                     <div class="timeline-date">2024 - 2026</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Soporte N2</h3>
                         <p class="timeline-company">Open Service</p>
                         <ul class="timeline-description">
-                            <li>Gestión Integral de Identidades y Accesos (IAM): Administración y soporte de entornos híbridos en Microsoft 365, Google Workspace y Active Directory, incluyendo la creación, modificación y baja de usuarios, grupos y licencias. Administración de permisos y creación de carpetas compartidas en red.</li>
-                            <li>Documentación e Implementación de Procesos de TI: Participe activamente en la iniciativa para identificar, documentar y formalizar procesos operativos críticos que carecían de manuales. </li>
+                            <li>Gestión Integral de Identidades y Accesos (IAM): Administración y soporte de entornos híbridos en Microsoft 365, Google Workspace y Active Directory.</li>
+                            <li>Documentación e Implementación de Procesos de TI: Participé activamente en la iniciativa para documentar procesos operativos críticos.</li>
                         </ul>
                     </div>
                 </div>
                 
-                <!-- EXPERIENCIA 2 -->
                 <div class="timeline-item">
-                    <div class="timeline-date">2024 - 2024</div>
+                    <div class="timeline-date">2024</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Ingeniero de Infraestructura</h3>
                         <p class="timeline-company">Servicio Continental de Mensajeria</p>
                         <ul class="timeline-description">
-                            <li>Infraestructura y Servidores: Supervisión de Servidores (Windows Server, Hyper-V/VMware), Mantenimiento de Infraestructura Física, CCTV, Telefonía IP (VoIP).</li>
-                            <li>Gestión de Activos y Proveedores (ITAM): Gestión de Inventario de Activos de TI, Gestión del Ciclo de Vida, Negociación y Relación con Proveedores.</li>
-                            <li>Implementación de Procesos de TI: Participé en la implementación de procesos operativos críticos, incluyendo el diseño de plantillas y checklists para mejorar la consistencia en la ejecución de tareas.</li>
+                            <li>Infraestructura y Servidores: Supervisión de Servidores, Mantenimiento de Infraestructura Física, CCTV, Telefonía IP.</li>
+                            <li>Gestión de Activos y Proveedores (ITAM): Gestión de Inventario de Activos de TI.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- EXPERIENCIA 3 -->
                 <div class="timeline-item">
                     <div class="timeline-date">2023 - 2024</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Soporte Técnico</h3>
                         <p class="timeline-company">Servicio Continental de Mensajeria</p>
                         <ul class="timeline-description">
-                            <li>Soporte Técnico y Mantenimiento: Proporcioné soporte técnico de primer nivel a usuarios finales, resolviendo incidencias relacionadas con hardware, software y conectividad de red. Realicé mantenimiento preventivo y correctivo de equipos informáticos.</li>
-                            <li>Gestión de Inventario de Activos: Colaboré en la gestión del inventario de activos de TI, asegurando la correcta documentación y seguimiento del ciclo de vida de los equipos.</li>
-                            <li>Asistencia en Proyectos de Infraestructura: Apoyé en la implementación y actualización de infraestructuras de red y servidores, contribuyendo a mejorar la eficiencia operativa.</li>
+                            <li>Soporte Técnico y Mantenimiento: Soporte de primer nivel a usuarios finales.</li>
+                            <li>Gestión de Inventario de Activos: Colaboré en la gestión del inventario de TI.</li>
                         </ul>
                     </div>
-                </div> <!-- Faltaba cerrar este div -->
+                </div> 
             </div>
         </div>
     </section>
-
-    <!-- ========== SOBRE MÍ - TEXTO LIMPIO ========== -->
+    
+    <!-- ========== PROYECTOS ========== -->
+    <section id="proyectos" class="section projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Proyectos Personales</h2>
+                <p class="section-subtitle">Mis desarrollos y herramientas</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <div class="project-icon">🖥️</div>
+                    <h3 class="project-title">LogWatcher</h3>
+                    <p class="project-description">
+                        Herramienta para análisis de logs SSH en Linux. Detecta ataques de fuerza bruta, 
+                        identifica IPs sospechosas y genera reportes automáticos con fecha y hora.
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>Bash</span>
+                        <span>Linux</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Eimner1618/logwatcher" target="_blank" class="project-link">Ver en GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <!-- ========== SOBRE MÍ ========== -->
     <section id="sobre-mi" class="section about-section">
         <div class="container">
             <div class="section-header">
@@ -139,9 +162,9 @@
             <div class="about-content">
                 <div class="about-text">
                     <p class="about-paragraph">
-                        Soy un Ingeniero en Sistemas en formación con una sólida experiencia práctica en el campo. Mi día a día ha consistido en garantizar la operación de la infraestructura tecnológica de una empresa (servidores, redes, servicios en la nube) mientras brindo soporte especializado.
-
-                        Mi motivación principal es la pasión por la tecnología. Me mantengo en aprendizaje activo constante, especialmente en temas de seguridad informática, ya que considero que es el pilar de cualquier sistema confiable. Busco un rol donde pueda consolidar este conocimiento, seguir creciendo profesionalmente y aportar valor a través de mi capacidad técnica, mi enfoque en procesos y mi compromiso con la mejora continua.
+                        Soy un Ingeniero en Sistemas en formación con una sólida experiencia práctica en el campo. 
+                        Mi día a día ha consistido en garantizar la operación de la infraestructura tecnológica 
+                        de una empresa mientras brindo soporte especializado.
                     </p>
                     
                     <div class="about-details">
@@ -162,7 +185,7 @@
         </div>
     </section>
 
-    <!-- ========== CERTIFICACIONES - CORREGIDO ========== -->
+    <!-- ========== CERTIFICACIONES ========== -->
     <section id="certificaciones" class="section certifications-section">
         <div class="container">
             <div class="section-header">
@@ -191,13 +214,13 @@
                     <li class="certification-item">
                         <h4 class="certification-title">Curso certificado en prevención de phishing</h4>
                         <p class="certification-date">2025</p>
-                    </li> <!-- Faltaba cerrar este li -->
+                    </li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ========== CONTACTO - FORMULARIO LIMPIO ========== -->
+    <!-- ========== CONTACTO ========== -->
     <section id="contacto" class="section contact-section">
         <div class="container">
             <div class="section-header">
@@ -206,7 +229,6 @@
             </div>
             
             <div class="contact-content">
-                <!-- INFORMACIÓN DE CONTACTO -->
                 <div class="contact-info">
                     <div class="contact-item">
                         <h4>Email</h4>
@@ -220,11 +242,19 @@
                         <h4>Ubicación</h4>
                         <p>Naucalpan de Juárez, Estado de México, México</p>
                     </div>
+                    <div class="contact-item">
+                        <h4>LinkedIn</h4>
+                        <p>
+                           <a href="https://www.linkedin.com/in/diego-alvarez-1618/" 
+                              target="_blank" 
+                              class="social-link linkedin-link">
+                               🔗 linkedin.com/in/diego-alvarez
+                           </a>
+                      </p>
+                   </div>
                 </div>
                 
-                <!-- FORMULARIO MINIMALISTA -->
                 <form class="contact-form" id="contactForm">
-                    <!-- Campo anti-spam (oculto) -->
                     <div style="display: none;">
                         <input type="text" name="_gotcha" id="_gotcha">
                     </div>
@@ -239,7 +269,6 @@
                         <textarea id="message" name="message" rows="4" placeholder="Tu mensaje" required></textarea>
                     </div>
                     
-                    <!-- Estado del envío -->
                     <div id="formStatus" class="form-status" style="display: none;"></div>
                     
                     <button type="submit" class="btn-primary" id="submitBtn">
@@ -247,7 +276,6 @@
                         <span id="btnLoader" style="display: none;">Enviando...</span>
                     </button>
                     
-                    <!-- Nota alternativa -->
                     <p class="form-note">
                         Si tienes problemas con el formulario, escríbeme directamente a: 
                         <a href="mailto:diegosmk16@gmail.com">diegosmk16@gmail.com</a>
@@ -257,26 +285,13 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER DISCRETO ========== -->
+    <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container">
             <p class="copyright">© <span id="currentYear"></span> Diego Armando Alvarez Valero. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- JavaScript para funcionalidades básicas -->
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

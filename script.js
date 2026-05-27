@@ -24,32 +24,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========== 5. ANIMACIONES SCROLL ==========
     inicializarAnimaciones();
 
-      // ========== 6. MODO OSCURO ==========
+    // ========== 6. MODO OSCURO ==========
     inicializarModoOscuro();
+    
+    // ========== 7. BOTÓN PDF ==========  ← AÑADE ESTA LÍNEA
+    inicializarPDF();
 });
 
 // ==============================================
 // FUNCIONES ESPECÍFICAS
 // ==============================================
 
-// ========== 2. FORMULARIO DE CONTACTO - VERSIÓN CORREGIDA ==========
+// ========== 2. FORMULARIO DE CONTACTO ==========
 function inicializarFormulario() {
     const form = document.getElementById('contactForm');
     
     if (!form) return;
     
-    // ✅ TU URL (sin cambios)
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2Eq6dAImdV6FZb5eWc8VgXfkHWFG0UWDs7RCni3QqKniB0ti6yN5mmVhhgT6uktnZSg/exec';
     
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Obtener datos
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
         const message = document.getElementById('message').value.trim();
         
-        // Validar
         if (!name || !email || !message) {
             alert('Por favor, completa todos los campos.');
             return;
@@ -60,41 +60,29 @@ function inicializarFormulario() {
             return;
         }
         
-        // Cambiar botón
         const btn = this.querySelector('button[type="submit"]');
         const originalText = btn.textContent;
         btn.textContent = 'Enviando...';
         btn.disabled = true;
         
         try {
-            // IMPORTANTE: Usar mode 'no-cors' para Google Apps Script
-            const response = await fetch(SCRIPT_URL, {
+            await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // ← ¡ESTO ES IMPORTANTE!
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message
-                })
+                body: JSON.stringify({ name, email, message })
             });
-            
-            // Con 'no-cors' no podemos leer la respuesta, pero asumimos éxito
-            // Revisa si realmente se guardó en Sheets
             
             alert('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.');
             form.reset();
-            
-            // Opcional: Mostrar mensaje más bonito
             mostrarAlerta('✅ ¡Mensaje enviado con éxito! Te contactaré pronto.', 'success');
             
         } catch (error) {
             console.error('Error:', error);
             alert('❌ Error al enviar. Por favor, usa el email directamente: diegosmk16@gmail.com');
         } finally {
-            // Restaurar botón
             btn.textContent = originalText;
             btn.disabled = false;
         }
@@ -108,10 +96,8 @@ function inicializarNavegacion() {
     if (navLinks.length === 0) return;
     
     function setActiveLink() {
-        // Obtiene posición actual de scroll
         const scrollPosition = window.scrollY + 100;
         
-        // Recorre todas las secciones
         document.querySelectorAll('section').forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
@@ -120,12 +106,10 @@ function inicializarNavegacion() {
             if (scrollPosition >= sectionTop && 
                 scrollPosition < sectionTop + sectionHeight) {
                 
-                // Remueve clase active de todos los links
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
                 
-                // Añade clase active al link correspondiente
                 const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
@@ -134,10 +118,7 @@ function inicializarNavegacion() {
         });
     }
     
-    // Escucha el evento scroll
     window.addEventListener('scroll', setActiveLink);
-    
-    // Ejecutar una vez al cargar
     setActiveLink();
 }
 
@@ -149,7 +130,6 @@ function inicializarMenuHamburguesa() {
     
     if (!hamburger || !navMenu) return;
     
-    // Crea el overlay dinámicamente si no existe
     let overlay = document.querySelector('.menu-overlay');
     if (!overlay) {
         overlay = document.createElement('div');
@@ -157,7 +137,6 @@ function inicializarMenuHamburguesa() {
         document.body.appendChild(overlay);
     }
     
-    // Función para abrir/cerrar menú
     function toggleMenu() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
@@ -165,7 +144,6 @@ function inicializarMenuHamburguesa() {
         document.body.classList.toggle('no-scroll');
     }
     
-    // Función para cerrar menú
     function closeMenu() {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
@@ -173,13 +151,11 @@ function inicializarMenuHamburguesa() {
         document.body.classList.remove('no-scroll');
     }
     
-    // Evento click en hamburguesa
     hamburger.addEventListener('click', function(e) {
-        e.stopPropagation(); // Previene que el click se propague
+        e.stopPropagation();
         toggleMenu();
     });
     
-    // Cerrar menú al hacer click en un enlace
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
@@ -188,24 +164,20 @@ function inicializarMenuHamburguesa() {
         });
     });
     
-    // Cerrar menú al hacer click en el overlay
     overlay.addEventListener('click', closeMenu);
     
-    // Cerrar menú al presionar Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeMenu();
         }
     });
     
-    // Cerrar menú al hacer scroll
     window.addEventListener('scroll', function() {
         if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
             closeMenu();
         }
     });
     
-    // Cerrar menú al redimensionar ventana (si se hace grande)
     window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             closeMenu();
@@ -224,26 +196,119 @@ function inicializarAnimaciones() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Opcional: dejar de observar después de mostrar
-                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
     
-    // Observa todos los elementos con clase 'fade-in'
-    document.querySelectorAll('.timeline-item, .about-content, .contact-form, .certifications-list').forEach(el => {
+    document.querySelectorAll('.timeline-item, .about-content, .contact-form, .certifications-list, .project-card').forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+}
+
+// ========== 6. MODO OSCURO ==========
+function inicializarModoOscuro() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    if (!themeToggle) {
+        console.log('⚠️ Botón de tema no encontrado');
+        return;
+    }
+    
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme-preference');
+    
+    function aplicarTema(esOscuro) {
+        if (esOscuro) {
+            document.body.classList.add('dark-mode');
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme-preference', 'dark');
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme-preference', 'light');
+        }
+    }
+    
+    if (savedTheme === 'dark') {
+        aplicarTema(true);
+    } else if (savedTheme === 'light') {
+        aplicarTema(false);
+    } else if (prefersDarkScheme.matches) {
+        aplicarTema(true);
+    } else {
+        aplicarTema(false);
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        const esModoOscuro = !document.body.classList.contains('dark-mode');
+        aplicarTema(esModoOscuro);
+        
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 150);
+    });
+    
+    prefersDarkScheme.addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme-preference')) {
+            aplicarTema(e.matches);
+        }
+    });
+    
+    console.log('✅ Modo oscuro inicializado');
+}
+
+// ========== 7. BOTÓN PDF ==========
+function inicializarPDF() {
+    // Verificar si ya existe el botón
+    if (document.getElementById('btnDescargarPDF')) {
+        return;
+    }
+    
+    const pdfContainer = document.createElement('div');
+    pdfContainer.className = 'pdf-button-container';
+    pdfContainer.innerHTML = `
+        <button class="btn-pdf" id="btnDescargarPDF">
+            📄 Descargar Portafolio (PDF)
+        </button>
+    `;
+    document.body.appendChild(pdfContainer);
+    
+    const btnPDF = document.getElementById('btnDescargarPDF');
+    if (!btnPDF) return;
+    
+    btnPDF.addEventListener('click', function() {
+        const originalText = btnPDF.innerHTML;
+        btnPDF.innerHTML = '⏳ Generando PDF...';
+        btnPDF.disabled = true;
+        
+        try {
+            window.print();
+            
+            setTimeout(() => {
+                btnPDF.innerHTML = originalText;
+                btnPDF.disabled = false;
+            }, 2000);
+        } catch (error) {
+            console.error('Error:', error);
+            btnPDF.innerHTML = '❌ Error';
+            setTimeout(() => {
+                btnPDF.innerHTML = originalText;
+                btnPDF.disabled = false;
+            }, 2000);
+        }
+    });
+    
+    console.log('✅ Botón PDF inicializado');
 }
 
 // ==============================================
 // FUNCIONES AUXILIARES
 // ==============================================
 
-// Función para mostrar alertas personalizadas
 function mostrarAlerta(mensaje, tipo = 'info') {
-    // Crear elemento de alerta si no existe
     let alertaContainer = document.getElementById('alerta-global');
     if (!alertaContainer) {
         alertaContainer = document.createElement('div');
@@ -258,7 +323,6 @@ function mostrarAlerta(mensaje, tipo = 'info') {
         document.body.appendChild(alertaContainer);
     }
     
-    // Crear alerta
     const alerta = document.createElement('div');
     alerta.style.cssText = `
         padding: 15px 20px;
@@ -273,19 +337,18 @@ function mostrarAlerta(mensaje, tipo = 'info') {
         justify-content: space-between;
     `;
     
-    // Establecer color según tipo
     switch(tipo) {
         case 'success':
-            alerta.style.backgroundColor = '#10b981'; // Verde
+            alerta.style.backgroundColor = '#10b981';
             break;
         case 'error':
-            alerta.style.backgroundColor = '#ef4444'; // Rojo
+            alerta.style.backgroundColor = '#ef4444';
             break;
         case 'warning':
-            alerta.style.backgroundColor = '#f59e0b'; // Amarillo
+            alerta.style.backgroundColor = '#f59e0b';
             break;
         default:
-            alerta.style.backgroundColor = '#3b82f6'; // Azul
+            alerta.style.backgroundColor = '#3b82f6';
     }
     
     alerta.innerHTML = `
@@ -295,14 +358,12 @@ function mostrarAlerta(mensaje, tipo = 'info') {
     
     alertaContainer.appendChild(alerta);
     
-    // Auto-eliminar después de 5 segundos
     setTimeout(() => {
         if (alerta.parentNode) {
             alerta.remove();
         }
     }, 5000);
     
-    // Añadir estilos CSS para animaciones
     if (!document.getElementById('estilos-alerta')) {
         const estilos = document.createElement('style');
         estilos.id = 'estilos-alerta';
@@ -320,17 +381,16 @@ function mostrarAlerta(mensaje, tipo = 'info') {
     }
 }
 
-// Función para validar email
 function validarEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
 // ==============================================
-// FUNCIONES ADICIONALES ÚTILES
+// FUNCIONES ADICIONALES
 // ==============================================
 
-// Prevenir envío de formulario con Enter en campos no deseados
+// Prevenir envío con Enter
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
     if (form) {
@@ -342,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Suavizar scroll para todos los enlaces internos
+// Scroll suave
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -363,7 +423,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Actualizar año en tiempo real (por si la página está abierta hasta año nuevo)
+// Actualizar año automáticamente
 function actualizarAnioAutomatico() {
     const ahora = new Date();
     const yearElement = document.getElementById('currentYear');
@@ -378,76 +438,4 @@ function actualizarAnioAutomatico() {
     }
 }
 
-// Verificar cada hora (3600000 ms = 1 hora)
 setInterval(actualizarAnioAutomatico, 3600000);
-
-// ==============================================
-// MODO OSCURO CON BOTÓN TOGGLE
-// ==============================================
-
-function inicializarModoOscuro() {
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.querySelector('.theme-icon');
-    
-    if (!themeToggle) {
-        console.log('⚠️ Botón de tema no encontrado');
-        return;
-    }
-    
-    // Verificar preferencia guardada o del sistema
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme-preference');
-    
-    // Función para aplicar tema
-    function aplicarTema(esOscuro) {
-        if (esOscuro) {
-            document.body.classList.add('dark-mode');
-            themeIcon.textContent = '☀️'; // Sol para modo oscuro
-            localStorage.setItem('theme-preference', 'dark');
-        } else {
-            document.body.classList.remove('dark-mode');
-            themeIcon.textContent = '🌙'; // Luna para modo claro
-            localStorage.setItem('theme-preference', 'light');
-        }
-    }
-    
-    // Aplicar tema guardado o preferencia del sistema
-    if (savedTheme === 'dark') {
-        aplicarTema(true);
-    } else if (savedTheme === 'light') {
-        aplicarTema(false);
-    } else if (prefersDarkScheme.matches) {
-        aplicarTema(true);
-    } else {
-        aplicarTema(false);
-    }
-    
-    // Toggle manual al hacer clic
-    themeToggle.addEventListener('click', function() {
-        const esModoOscuro = !document.body.classList.contains('dark-mode');
-        aplicarTema(esModoOscuro);
-        
-        // Feedback visual
-        themeToggle.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            themeToggle.style.transform = '';
-        }, 150);
-    });
-    
-    // Escuchar cambios en preferencia del sistema (solo si no hay preferencia guardada)
-    prefersDarkScheme.addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme-preference')) {
-            aplicarTema(e.matches);
-        }
-    });
-    
-    console.log('✅ Modo oscuro inicializado');
-}
-
-
-
-
-
-
-
-
